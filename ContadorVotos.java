@@ -43,9 +43,7 @@ public class ContadorVotos {
         System.out.println("=".repeat(50));
     }
 
-    /**
-     * Muestra los porcentajes de todos los candidatos del 1 al máximo registrado
-     */
+    // Muestra los porcentajes de todos los candidatos del 1 al máximo registrado
     public void mostrarPorcentajes() {
         if (totalVotos == 0) {
             System.out.println("\nNo hay votos registrados aún.");
@@ -120,7 +118,7 @@ public class ContadorVotos {
 
             } catch (Exception e) {
                 System.out.println("Error: Ingrese un número válido.");
-                scanner.nextLine(); // Limpiar buffer
+                scanner.nextLine();
             }
         }
     }
