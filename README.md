@@ -4,11 +4,16 @@ Sistema de conteo de votos desarrollado en **Java 25** para calcular el porcenta
 
 ## 📋 Descripción
 
-Este programa permite registrar votos de manera interactiva, donde cada voto se ingresa con el número identificador del candidato. Al finalizar el conteo (ingresando `0`), el sistema calcula y muestra:
+Este programa permite gestionar el conteo de votos de manera interactiva mediante un menú con tres opciones:
 
-- Total de votos contados
-- Cantidad de votos por candidato
-- Porcentaje de votos para cada candidato
+1. **Mostrar porcentajes de votos**: Muestra todos los candidatos del 1 al máximo número registrado con sus porcentajes actuales
+2. **Contar voto**: Permite ingresar un voto para un candidato
+0. **Salir**: Finaliza el programa y muestra los resultados finales
+
+Al seleccionar la opción 1, el sistema muestra:
+- Lista de todos los candidatos desde el número 1 hasta el máximo registrado
+- Porcentaje de votos para cada candidato (0.00% si no tiene votos)
+
 
 ## 💻 Uso
 

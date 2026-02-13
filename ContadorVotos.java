@@ -43,46 +43,85 @@ public class ContadorVotos {
         System.out.println("=".repeat(50));
     }
 
+    /**
+     * Muestra los porcentajes de todos los candidatos del 1 al máximo registrado
+     */
+    public void mostrarPorcentajes() {
+        if (totalVotos == 0) {
+            System.out.println("\nNo hay votos registrados aún.");
+            return;
+        }
+
+        // Encontrar el candidato con el número más alto
+        int maxCandidato = votos.keySet().stream()
+                .max(Integer::compare)
+                .orElse(0);
+
+        System.out.println("\n" + "=".repeat(50));
+        System.out.println("PORCENTAJES DE VOTOS POR CANDIDATO");
+        System.out.println("=".repeat(50));
+
+        // Mostrar todos los candidatos del 1 al máximo
+        for (int i = 1; i <= maxCandidato; i++) {
+            int cantidadVotos = votos.getOrDefault(i, 0);
+            double porcentaje = (cantidadVotos * 100.0) / totalVotos;
+            System.out.printf("%d. %.2f%%%n", i, porcentaje);
+        }
+
+        System.out.println("=".repeat(50));
+    }
+
     public static void main(String[] args) {
         ContadorVotos contador = new ContadorVotos();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("SISTEMA DE CONTEO DE VOTOS - URNA ELECTORAL");
         System.out.println();
-        System.out.println("Instrucciones:");
-        System.out.println("- Ingrese el número del candidato por cada voto");
-        System.out.println("- Ingrese 0 cuando termine el conteo");
-        System.out.println();
 
-        int numeroCandidato;
-        int votosIngresados = 0;
+        int opcion;
 
         while (true) {
-            System.out.print("Ingrese número de candidato (0 para finalizar): ");
+            System.out.println("\n--- MENÚ ---");
+            System.out.println("1. Mostrar porcentajes de votos");
+            System.out.println("2. Contar voto");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opción: ");
 
             try {
-                numeroCandidato = scanner.nextInt();
+                opcion = scanner.nextInt();
 
-                if (numeroCandidato == 0) {
-                    break;
+                switch (opcion) {
+                    case 1:
+                        contador.mostrarPorcentajes();
+                        break;
+
+                    case 2:
+                        System.out.print("Ingrese número de candidato: ");
+                        int numeroCandidato = scanner.nextInt();
+
+                        if (numeroCandidato <= 0) {
+                            System.out.println("Error: El número debe ser positivo.");
+                            break;
+                        }
+
+                        contador.registrarVoto(numeroCandidato);
+                        System.out.println("Voto registrado (" + contador.totalVotos + " votos totales)");
+                        break;
+
+                    case 0:
+                        System.out.println("\nCerrando programa...");
+                        contador.mostrarResultados();
+                        scanner.close();
+                        return;
+
+                    default:
+                        System.out.println("Opción no válida. Intente de nuevo.");
                 }
-
-                if (numeroCandidato < 0) {
-                    System.out.println("Error: El número debe ser positivo o 0 para finalizar.");
-                    continue;
-                }
-
-                contador.registrarVoto(numeroCandidato);
-                votosIngresados++;
-                System.out.println("Voto registrado (" + votosIngresados + " votos totales)");
 
             } catch (Exception e) {
                 System.out.println("Error: Ingrese un número válido.");
-                scanner.nextLine();
+                scanner.nextLine(); // Limpiar buffer
             }
         }
-
-        scanner.close();
-        contador.mostrarResultados();
     }
 }
