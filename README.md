@@ -36,3 +36,27 @@ git add .
 git commit -m "mensaje"
 git push
 ```
+
+---
+
+## 🧪 PairProgramming.java – Manejo de Excepciones
+
+Archivo desarrollado en pareja como práctica de manejo de excepciones (Ingeniería de Software, UV Coatzacoalcos).
+
+### Ejercicios implementados
+
+| # | Descripción |
+|---|-------------|
+| 1 | Lanza un `Exception` dentro de `try` e imprime su mensaje con `getMessage()`. |
+| 2 | Añade impresión del *stack trace* (`printStackTrace`) y cláusula `finally`. |
+| 3 | Define `OperacionInvalidaException`, subclase de `Exception` con constructor de mensaje. |
+| 4 | Método `procesarValor()` lanza la excepción personalizada; `main` la controla. |
+| 5 | Usa `null` en lugar de instanciar; captura `Exception` base y observa el `NullPointerException`. |
+| 6 | Método `a()` lanza su excepción; `b()` la captura y relanza una propia; `main` imprime el *stack trace*. |
+
+### Compilación y ejecución
+
+```bash
+javac PairProgramming.java
+java PairProgramming
+```
